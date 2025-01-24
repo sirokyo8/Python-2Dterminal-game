@@ -30,6 +30,7 @@ class Hrac(Player):
                 main.matrix[pohyb[0]][pohyb[1]] = "@"
                 main.matrix[self.pozice[0]][self.pozice[1]] = "-"
                 self.pozice = pohyb
+                print(f"Posunul jsi se na pozici {self.pozice}")
                 
         elif smer in ("a", "A"):
             pass

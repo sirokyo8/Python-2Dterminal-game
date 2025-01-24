@@ -1,5 +1,7 @@
-# EN: Function for printing rules and information about the game
-# CZ: Funkce pro vypsání pravidel a informací o hře
+# RUN THIS FILE TO PLAY THE GAME!
+# SPUSŤ TENTO SOUBOR PRO ZAČÁTEK HRY!
+
+import fields
 
 def info():
     print()
@@ -15,3 +17,23 @@ def info():
     print("UŽIJ SI HRU!")
     print()
     print()
+    
+# Funkce pro vypisování hracího pole
+def vypsatHraciPole():
+    for i in fields.matrix:
+        for z in i:
+            print(z, end="")
+        print()
+
+# Funkce pro kontrolu, zda můžu jít na pozici
+def kontrola(pozice, hrac):
+    row, col = pozice
+    if fields.matrix[row][col] == "█":
+        print("Narazil jsi do zdi: Ubráno zdraví o 1!")
+        hrac.zdravi -= 1
+        return False
+    elif fields.matrix[row][col] == "-":
+        return True
+    elif fields.matrix[row][col] == "*":
+        print("Sebral jsi item! (ještě není plně funkční)") # DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT !!!!!!!!!!
+        return True
