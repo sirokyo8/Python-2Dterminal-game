@@ -2,6 +2,7 @@
 # SPUSŤ TENTO SOUBOR PRO ZAČÁTEK HRY!
 
 import fields
+from players import Hrac, Nepritel
 
 def info():
     print()
@@ -33,5 +34,8 @@ def kontrola(pozice, hrac):
     elif fields.matrix[row][col] == "-":
         return True
     elif fields.matrix[row][col] == "*":
-        print("Sebral jsi item! (ještě není plně funkční)") # DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT !!!!!!!!!!
+        if isinstance(hrac, Hrac):
+            print("Sebral jsi item! (ještě není plně funkční)") # DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT DODĚLAT !!!!!!!!!!
+        elif isinstance(hrac, Nepritel):
+            print("Nepřítel sebral item a získal: ...")
         return True
