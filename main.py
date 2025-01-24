@@ -1,4 +1,4 @@
-import functions, players, fields
+import functions, players, fields, enmyAI
 
 # Vytvoření hráčů
 hrac = players.Hrac()

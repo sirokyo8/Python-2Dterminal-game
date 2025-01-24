@@ -14,7 +14,13 @@ class Player():
 class Nepritel(Player):
     def __init__(self):
         super().__init__()
-        self.pozice = (2,9)
+        self.pozice = self.najdiPozici()
+        
+    def najdiPozici(self):
+        for i in fields.matrix:
+            for z in i:
+                if z == "#":
+                    return (fields.matrix.index(i), i.index(z))
     
 class Hrac(Player):
     def __init__(self):
