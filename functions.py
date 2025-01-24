@@ -15,8 +15,6 @@ def info():
     print("Cílem hry je zneškodnit nepřítele.")
     print("""Hru můžeš ukončit buď klávesovou zkratkou Ctrl+C, nebo napiš "konec" do inputu""")
     print("UŽIJ SI HRU!")
-    print()
-    print()
     
 # Funkce pro vypisování hracího pole
 def vypsatHraciPole():
