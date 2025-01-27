@@ -10,30 +10,7 @@ class Player():
         self.brneni = 1
         self.inventar = []
         self.pozice = (0,0)
-
-class Nepritel(Player):
-    def __init__(self):
-        super().__init__()
-        self.pozice = self.najdiPozici()
         
-    def najdiPozici(self):
-        for i in fields.matrix:
-            for z in i:
-                if z == "#":
-                    return (fields.matrix.index(i), i.index(z))
-    
-class Hrac(Player):
-    def __init__(self):
-        super().__init__()
-        self.pozice = self.najdiPozici()
-        
-    def najdiPozici(self):
-        for i in fields.matrix:
-            for z in i:
-                if z == "@":
-                    return (fields.matrix.index(i), i.index(z))
-        
-    
     def pohyb(self, smer):
         # Pohyb nahoru
         if smer in ("w", "W"):
@@ -75,3 +52,25 @@ class Hrac(Player):
                     print(f"Posunul jsi se na pozici {self.pozice}")
         
         else: print("Byl zadán neplatný vstup")
+
+class Nepritel(Player):
+    def __init__(self):
+        super().__init__()
+        self.pozice = self.najdiPozici()
+        
+    def najdiPozici(self):
+        for i in fields.matrix:
+            for z in i:
+                if z == "#":
+                    return (fields.matrix.index(i), i.index(z))
+    
+class Hrac(Player):
+    def __init__(self):
+        super().__init__()
+        self.pozice = self.najdiPozici()
+        
+    def najdiPozici(self):
+        for i in fields.matrix:
+            for z in i:
+                if z == "@":
+                    return (fields.matrix.index(i), i.index(z))

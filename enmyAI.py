@@ -4,7 +4,7 @@
 # The enemy can see the player within 2 spaces (after spotting him, he moves towards him). Otherwise it moves to a random location.
 # Nepřítel může hráče vidět do vzdálenosti 2 pole (po zahlédnutí se pohybuje směrem k němu). Jinak se přesouvá na náhodné místo.
 
-import fields
+import fields, random
 
 def enmysMove(pozice, nepritel):
     
@@ -19,7 +19,27 @@ def enmysMove(pozice, nepritel):
     elif fields.matrix[row][col-1] == "@" or fields.matrix[row][col-2] == "@" and not iswallbetween(row,col-1,row,col-2):   # 4. kontrola je 2 pole vlevo
         nepritel.pohyb(nepritel, "A")
         
-def iswallbetween(fr,fc,sr,sc): # fr = first row, sc = second column etc.
-    if fields.matrix[fr][fc] != "█" and fields.matrix[sr][sc] != "█":
+    # Pokud hráče nevidí, pohybuje se náhodně
+    else:
+        while True:
+            smer = random.choice(["W", "S", "A", "D"])
+            if smer == "W":
+                pohyb = (pozice[0] - 1, pozice[1])
+            elif smer == "S":
+                pohyb = (pozice[0] + 1, pozice[1])
+            elif smer == "A":
+                pohyb = (pozice[0], pozice[1] - 1)
+            elif smer == "D":
+                pohyb = (pozice[0], pozice[1] + 1)
+            
+            if not is_wall(pohyb):
+                nepritel.pohyb(smer)
+                break
+
+def is_wall(pozice):
+    row, col = pozice
+    return fields.matrix[row][col] == "█"
+
+def iswallbetween(fr,fc,sr,sc):
+    if not is_wall((fr,fc)) and not is_wall((sr,sc)):
         return True
-    else: return False

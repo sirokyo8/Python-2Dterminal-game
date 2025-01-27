@@ -24,3 +24,4 @@ while True:
         print("Byl zadán neplatný vstup")
     else:
         hrac.pohyb(smer)
+        enmyAI.enmysMove(nepritel.pozice, nepritel)
