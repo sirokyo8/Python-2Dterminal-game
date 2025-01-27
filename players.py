@@ -12,11 +12,16 @@ class Player():
         self.pozice = (0,0)
         
     def pohyb(self, smer):
+        # Zjištění symbolu hráče
+        if self.typ == "hrac":
+            symbol = "@"
+        else: symbol = "#"
+        
         # Pohyb nahoru
         if smer in ("w", "W"):
             pohyb = (self.pozice[0] - 1, self.pozice[1])
             if functions.kontrola(pohyb, self):
-                fields.matrix[pohyb[0]][pohyb[1]] = "@"
+                fields.matrix[pohyb[0]][pohyb[1]] = symbol
                 fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                 self.pozice = pohyb
                 print(f"Posunul jsi se na pozici {self.pozice}")
@@ -26,7 +31,7 @@ class Player():
             if smer in ("a", "A"):
                 pohyb = (self.pozice[0], self.pozice[1] - 1)
                 if functions.kontrola(pohyb, self):
-                    fields.matrix[pohyb[0]][pohyb[1]] = "@"
+                    fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
                     print(f"Posunul jsi se na pozici {self.pozice}")
@@ -36,7 +41,7 @@ class Player():
             if smer in ("s", "S"):
                 pohyb = (self.pozice[0] + 1, self.pozice[1])
                 if functions.kontrola(pohyb, self):
-                    fields.matrix[pohyb[0]][pohyb[1]] = "@"
+                    fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
                     print(f"Posunul jsi se na pozici {self.pozice}")
@@ -46,7 +51,7 @@ class Player():
             if smer in ("d", "D"):
                 pohyb = (self.pozice[0], self.pozice[1] + 1)
                 if functions.kontrola(pohyb, self):
-                    fields.matrix[pohyb[0]][pohyb[1]] = "@"
+                    fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
                     print(f"Posunul jsi se na pozici {self.pozice}")
@@ -57,6 +62,7 @@ class Nepritel(Player):
     def __init__(self):
         super().__init__()
         self.pozice = self.najdiPozici()
+        self.typ = "nepritel"
         
     def najdiPozici(self):
         for i in fields.matrix:
@@ -68,6 +74,7 @@ class Hrac(Player):
     def __init__(self):
         super().__init__()
         self.pozice = self.najdiPozici()
+        self.typ = "hrac"
         
     def najdiPozici(self):
         for i in fields.matrix:
