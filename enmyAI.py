@@ -10,14 +10,14 @@ def enmysMove(pozice, nepritel):
     
     # Kontrola zda nepřítel nemůže vidět hráče - pokud ano, posune se k němu
     row, col = pozice
-    if fields.matrix[row-1][col] == "@" or fields.matrix[row-2][col] == "@" and not iswallbetween(row-1,col,row-2,col):     # 1. kontrola je 2 pole nahoře
-        nepritel.pohyb(nepritel, "W")
-    elif fields.matrix[row+1][col] == "@" or fields.matrix[row+2][col] == "@" and not iswallbetween(row+1,col,row+2,col):   # 2. kontrola je 2 pole dole
-        nepritel.pohyb(nepritel, "S")
-    elif fields.matrix[row][col+1] == "@" or fields.matrix[row][col-2] == "@" and not iswallbetween(row,col+1,row,col+2):   # 3. kontrola je 2 pole vpravo
-        nepritel.pohyb(nepritel, "D")
-    elif fields.matrix[row][col-1] == "@" or fields.matrix[row][col-2] == "@" and not iswallbetween(row,col-1,row,col-2):   # 4. kontrola je 2 pole vlevo
-        nepritel.pohyb(nepritel, "A")
+    if (fields.matrix[row-1][col] == "@" or fields.matrix[row-2][col] == "@") and not iswallbetween(row-1, col, row-2, col):     # 1. kontrola je 2 pole nahoře
+        nepritel.pohyb("w")
+    elif (fields.matrix[row+1][col] == "@" or fields.matrix[row+2][col] == "@") and not iswallbetween(row+1, col, row+2, col):   # 2. kontrola je 2 pole dole
+        nepritel.pohyb("s")
+    elif (fields.matrix[row][col+1] == "@" or fields.matrix[row][col+2] == "@") and not iswallbetween(row, col+1, row, col+2):   # 3. kontrola je 2 pole vpravo
+        nepritel.pohyb("d")
+    elif (fields.matrix[row][col-1] == "@" or fields.matrix[row][col-2] == "@") and not iswallbetween(row, col-1, row, col-2):   # 4. kontrola je 2 pole vlevo
+        nepritel.pohyb("a")
         
     # Pokud hráče nevidí, pohybuje se náhodně
     else:
@@ -40,6 +40,5 @@ def is_wall(pozice):
     row, col = pozice
     return fields.matrix[row][col] == "█"
 
-def iswallbetween(fr,fc,sr,sc):
-    if not is_wall((fr,fc)) and not is_wall((sr,sc)):
-        return True
+def iswallbetween(fr, fc, sr, sc):
+    return fields.matrix[fr][fc] == "█" or fields.matrix[sr][sc] == "█"
