@@ -18,7 +18,28 @@ def enmysMove(pozice, nepritel):
         nepritel.pohyb("d")
     elif (fields.matrix[row][col-1] == "@" or fields.matrix[row][col-2] == "@") and not iswallbetween(row, col-1, row, col-2):   # 4. kontrola je 2 pole vlevo
         nepritel.pohyb("a")
-        
+    elif (fields.matrix[row-1][col+1] == "@"): # 5. kontrola je vpravo nahoře
+        if not is_wall((row, col+1)):
+            nepritel.pohyb("d")
+        elif not is_wall((row-1, col)):  # Jakou cestu má nepřítel zvolit?
+            nepritel.pohyb("w")
+    elif (fields.matrix[row-1][col-1] == "@"): # 6. kontrola je vlevo nahoře
+        if not is_wall((row, col-1)):
+            nepritel.pohyb("a")
+        elif not is_wall((row-1, col)):  # Jakou cestu má nepřítel zvolit?
+            nepritel.pohyb("w")
+    elif (fields.matrix[row+1][col+1] == "@"): # 7. kontrola je vpravo dole
+        if not is_wall((row, col+1)):
+            nepritel.pohyb("d") 
+        elif not is_wall((row+1, col)):  # Jakou cestu má nepřítel zvolit?
+            nepritel.pohyb("s")
+    elif (fields.matrix[row+1][col-1] == "@"): # 8. kontrola je vlevo dole
+        if not is_wall((row, col-1)):
+            nepritel.pohyb("a")
+        elif not is_wall((row+1, col)):  # Jakou cestu má nepřítel zvolit?
+            nepritel.pohyb("s")
+            
+            
     # Pokud hráče nevidí, pohybuje se náhodně
     else:
         while True:
