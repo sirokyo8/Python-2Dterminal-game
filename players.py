@@ -24,7 +24,8 @@ class Player():
                 fields.matrix[pohyb[0]][pohyb[1]] = symbol
                 fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                 self.pozice = pohyb
-                print(f"Posunul jsi se na pozici {self.pozice}")
+                if self.typ == "hrac":
+                    print(f"Posunul jsi se na pozici {self.pozice}")
                 
         # Pohyb doleva        
         elif smer in ("a", "A"):
@@ -34,7 +35,8 @@ class Player():
                     fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
-                    print(f"Posunul jsi se na pozici {self.pozice}")
+                    if self.typ == "hrac":
+                        print(f"Posunul jsi se na pozici {self.pozice}")
         
         # Pohyb dolů   
         elif smer in ("s", "S"):
@@ -44,7 +46,8 @@ class Player():
                     fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
-                    print(f"Posunul jsi se na pozici {self.pozice}")
+                    if self.typ == "hrac":
+                        print(f"Posunul jsi se na pozici {self.pozice}")
         
         # Pohyb doprava
         elif smer in ("d", "D"):
@@ -54,7 +57,8 @@ class Player():
                     fields.matrix[pohyb[0]][pohyb[1]] = symbol
                     fields.matrix[self.pozice[0]][self.pozice[1]] = "-"
                     self.pozice = pohyb
-                    print(f"Posunul jsi se na pozici {self.pozice}")
+                    if self.typ == "hrac":
+                        print(f"Posunul jsi se na pozici {self.pozice}")
         
         else: print("Byl zadán neplatný vstup")
 

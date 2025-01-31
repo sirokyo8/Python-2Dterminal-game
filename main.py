@@ -1,4 +1,5 @@
 import functions, players, fields, enmyAI
+import copy
 
 # Vytvoření hráčů
 hrac = players.Hrac()
@@ -10,6 +11,7 @@ functions.info()
 # Hlavní cyklus hry
 while True:
     functions.vypsatHraciPole()
+    fields.helpMatrix = copy.deepcopy(fields.matrix)
     smer = input("Zadej svůj tah: ")
     if smer == "konec" or smer == "break":
         print("Konec hry")
