@@ -42,6 +42,15 @@ while True:
         print(f"Síla nepřítele: {nepritel.sila}")
     elif smer == "pocet-uteku":
         print(f"Hráč (ty) má {hrac.utek} útěků")
+    elif smer == "ja":
+        print(f"Tvoje zdraví: {hrac.zdravi}")
+        print(f"Tvoje síla: {hrac.sila}")
+        print(f"Tvoje brnění: {hrac.brneni}")
+        print(f"Tvoje útěky: {hrac.utek}")
+    elif smer == "nepritel":
+        print(f"Zdraví nepřítele: {nepritel.zdravi}")
+        print(f"Síla nepřítele: {nepritel.sila}")
+        print(f"Brnění nepřítele: {nepritel.brneni}")
     elif smer == "boj":
         if functions.jsouVedle(hrac, nepritel):
             functions.boj(hrac, nepritel)
@@ -70,6 +79,10 @@ while True:
     elif smer in ["w", "W", "a", "A", "s", "S", "d", "D"]:
         hrac.pohyb(smer)
         enmyAI.enmysMove(nepritel.pozice, nepritel)
+        if functions.jsouVedle(hrac, nepritel):
+            hrac.zdravi -= (functions.myRound(nepritel.sila / 2) - hrac.brneni)
+            print("Nepřítel na tebe zaútočil poloviční silou!")
+            print(f"Zdraví hráče (ty): {hrac.zdravi}")
         functions.zkotrolovatAPridatItem()
     else:
         print("Žádný tah nebyl proveden. Špatný vstup!")

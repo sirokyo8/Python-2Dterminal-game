@@ -38,13 +38,13 @@ def kontrola(pozice, hrac):
             vec = item("n")
             if vec[0] == "zdravi":
                 hrac.zdravi += vec[1]
-                print(f"Sebral jsi lektvar a získal jsi {vec[1]} zdraví")
+                print(f"Nepřítel sebral lektvar a získal {vec[1]} zdraví")
             elif vec[0] == "sila":
                 hrac.sila += vec[1]
-                print(f"Sebral jsi lektvar a získal jsi {vec[1]} síly")
+                print(f"Nepřítel sebral lektvar a získal {vec[1]} síly")
             else:
                 hrac.brneni += vec[1]
-                print(f"Sebral jsi lektvar a získal jsi {vec[1]} brnění")
+                print(f"Nepřítel sebral lektvar a získal {vec[1]} brnění")
                 
         return True
     
@@ -55,9 +55,9 @@ def item(typHrace):
         typItemu = random.choice(["zdravi", "sila", "brneni"])
         
     if typItemu == "zdravi":
-        return ["zdravi", random.randint(5, 50)]
+        return ["zdravi", random.randint(5, 30)]
     elif typItemu == "sila":
-        return ["sila", random.randint(5, 50)]
+        return ["sila", random.randint(5, 30)]
     elif typItemu == "utek":
         return ["utek", 1]
     else:
@@ -110,3 +110,9 @@ def boj(hrac, nepritel):
     print(f"Zdraví hráče: {hrac.zdravi}")
     
     return
+
+def myRound(cislo):
+    if cislo - int(cislo) == 0.5:
+        return int(cislo) +1
+    else:
+        return int(cislo)
