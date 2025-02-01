@@ -39,11 +39,32 @@ while True:
         print(f"Brnění nepřítele: {nepritel.brneni}")
     elif smer == "sila":
         print(f"Síla hráče (ty): {hrac.sila}")
-        print(f"Síla nepřítele: {nepritel.sila}") 
+        print(f"Síla nepřítele: {nepritel.sila}")
+    elif smer == "pocet-uteku":
+        print(f"Hráč (ty) má {hrac.utek} útěků")
     elif smer == "boj":
         if functions.jsouVedle(hrac, nepritel):
             functions.boj(hrac, nepritel)
         else: print("Nemůžeš zaútočit, protože nejsi vedle nepřítele!")
+    
+    # Útěky hráče
+    elif len(smer) >= 2 and smer[0] in ["w", "W", "a", "A", "s", "S", "d", "D"] and smer[1] in ["w", "W", "a", "A", "s", "S", "d", "D"] and (len(smer) == 2 or (len(smer) == 3 and smer[2] in ["w", "W", "a", "A", "s", "S", "d", "D"])):
+        if hrac.utek < 1:
+            print("Nemáš možnost útěku (musíš nejdříve získat útěk z itemu)!")
+        else:
+            if len(smer) == 2:
+                hrac.pohyb(smer[0])
+                hrac.pohyb(smer[1])
+                hrac.utek -= 1
+                enmyAI.enmysMove(nepritel.pozice, nepritel)
+                functions.zkotrolovatAPridatItem()
+            elif len(smer) == 3:
+                hrac.pohyb(smer[0])
+                hrac.pohyb(smer[1])
+                hrac.pohyb(smer[2])
+                hrac.utek -= 1
+                enmyAI.enmysMove(nepritel.pozice, nepritel)
+                functions.zkotrolovatAPridatItem()
         
     # Pohyby hráče
     elif smer in ["w", "W", "a", "A", "s", "S", "d", "D"]:

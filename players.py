@@ -76,6 +76,7 @@ class Hrac(Player):
         super().__init__()
         self.pozice = self.najdiPozici()
         self.typ = "hrac"
+        self.utek = 1
         
     def najdiPozici(self):
         for i in fields.matrix:

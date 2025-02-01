@@ -21,18 +21,21 @@ def kontrola(pozice, hrac):
         return True
     elif fields.matrix[row][col] == "*":
         if hrac.typ=="hrac":
-            vec = item()
+            vec = item("h")
             if vec[0] == "zdravi":
                 hrac.zdravi += vec[1]
                 print(f"Sebral jsi lektvar a získal jsi {vec[1]} zdraví")
             elif vec[0] == "sila":
                 hrac.sila += vec[1]
                 print(f"Sebral jsi lektvar a získal jsi {vec[1]} síly")
+            elif vec[0] == "utek":
+                hrac.utek += vec[1]
+                print(f"Získal jsi 1 útěk navíc")
             else:
                 hrac.brneni += vec[1]
                 print(f"Sebral jsi lektvar a získal jsi {vec[1]} brnění")
         elif hrac.typ=="nepritel":
-            vec = item()
+            vec = item("n")
             if vec[0] == "zdravi":
                 hrac.zdravi += vec[1]
                 print(f"Sebral jsi lektvar a získal jsi {vec[1]} zdraví")
@@ -45,12 +48,18 @@ def kontrola(pozice, hrac):
                 
         return True
     
-def item():
-    typ = random.choice(["zdravi", "sila", "brneni"])
-    if typ == "zdravi":
+def item(typHrace):
+    if typHrace == "h":
+        typItemu = random.choice(["zdravi", "sila", "brneni", "utek"])
+    else:
+        typItemu = random.choice(["zdravi", "sila", "brneni"])
+        
+    if typItemu == "zdravi":
         return ["zdravi", random.randint(5, 50)]
-    elif typ == "sila":
+    elif typItemu == "sila":
         return ["sila", random.randint(5, 50)]
+    elif typItemu == "utek":
+        return ["utek", 1]
     else:
         return ["brneni", random.randint(1, 10)]
     
