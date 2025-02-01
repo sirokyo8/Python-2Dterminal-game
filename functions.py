@@ -79,13 +79,13 @@ def jsouVedle(hrac, nepritel):
     pr, pc = hrac.pozice
     er, ec = nepritel.pozice
     
-    if (pr + 1) == er:
+    if (pr + 1) == er and pc == ec:
         return True
-    elif (pr - 1) == er:
+    elif (pr - 1) == er and pc == ec:
         return True
-    elif (pc + 1) == ec:
+    elif (pc + 1) == ec and pr == er:
         return True
-    elif (pc - 1) == ec:
+    elif (pc - 1) == ec and pr == er:
         return True
     else: return False
 
