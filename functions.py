@@ -69,3 +69,35 @@ def zkotrolovatAPridatItem():
         if fields.matrix[row][col] == "-":
             fields.matrix[row][col] = "*"
             return
+        
+def zije(postava):
+    if postava.zdravi <= 0:
+        return False
+    return True
+
+def jsouVedle(hrac, nepritel):
+    pr, pc = hrac.pozice
+    er, ec = nepritel.pozice
+    
+    if (pr + 1) == er:
+        return True
+    elif (pr - 1) == er:
+        return True
+    elif (pc + 1) == ec:
+        return True
+    elif (pc - 1) == ec:
+        return True
+    else: return False
+
+def boj(hrac, nepritel):
+    print("Bojuješ s nepřítelem!")
+
+    # Útok hráče
+    nepritel.zdravi -= (hrac.sila - nepritel.brneni)
+    print(f"Zdraví nepřítele: {nepritel.zdravi}")
+        
+    # Útok nepřítele
+    hrac.zdravi -= (nepritel.sila - hrac.brneni)
+    print(f"Zdraví hráče: {hrac.zdravi}")
+    
+    return

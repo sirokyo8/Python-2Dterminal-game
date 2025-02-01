@@ -7,6 +7,19 @@ nepritel = players.Nepritel()
 
 # Hlavní cyklus hry
 while True:
+    zivotHrace = functions.zije(hrac)
+    zivotNepritele = functions.zije(nepritel)
+    
+    if not zivotHrace and not zivotNepritele:
+        print("REMÍZA! Oba jste ztratili veškeré zdraví!")
+        break
+    elif not zivotHrace:
+        print("PROHRÁL JSI! Tvé zdraví kleslo na 0!")
+        break
+    elif not zivotNepritele:
+        print("VYHRÁL JSI! Nepřítel ztratil veškeré zdraví!")
+        break
+    
     functions.vypsatHraciPole()
     fields.helpMatrix = copy.deepcopy(fields.matrix)
     smer = input("Zadej svůj tah: ")
@@ -27,6 +40,12 @@ while True:
     elif smer == "sila":
         print(f"Síla hráče (ty): {hrac.sila}")
         print(f"Síla nepřítele: {nepritel.sila}") 
+    elif smer == "boj":
+        if functions.jsouVedle(hrac, nepritel):
+            functions.boj(hrac, nepritel)
+        else: print("Nemůžeš zaútočit, protože nejsi vedle nepřítele!")
+        
+    # Pohyby hráče
     elif smer in ["w", "W", "a", "A", "s", "S", "d", "D"]:
         hrac.pohyb(smer)
         enmyAI.enmysMove(nepritel.pozice, nepritel)
