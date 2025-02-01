@@ -146,8 +146,97 @@ def enmysMove(pozice, nepritel):
             elif not is_wall((row, col-1)):
                 nepritel.pohyb("a")
                 return
-            
-    # Pokud hráče nevidí, pohybuje se náhodně
+    
+    # Když nepřítel neuvidí hráče, ale uvidí item, půjde si pro něj
+    for i in range(1, 4):
+        if is_valid_position(row-1, col) and fields.matrix[row-i][col] == "*":
+            if i == 1:
+                nepritel.pohyb("w")
+                return
+            elif i == 2:
+                if not is_wall((row-1, col)):
+                    nepritel.pohyb("w")
+                    return
+            else:
+                if not is_wall((row-1, col)) and not is_wall((row-2, col)):
+                    nepritel.pohyb("w")
+                    return
+    
+    for i in range(1, 4):
+        if is_valid_position(row+i, col):
+            if fields.matrix[row+i][col] == "*":
+                if i == 1:
+                    nepritel.pohyb("s")
+                    return
+                elif i == 2:
+                    if not is_wall((row+1, col)):
+                        nepritel.pohyb("s")
+                        return
+                else:
+                    if not is_wall((row+1, col)) and not is_wall((row+2, col)):
+                        nepritel.pohyb("s")
+                        return
+                    
+    for i in range(1, 4):
+        if is_valid_position(row, col+i):
+            if fields.matrix[row][col+i] == "*":
+                if i == 1:
+                    nepritel.pohyb("d")
+                    return
+                elif i == 2:
+                    if not is_wall((row, col+1)):
+                        nepritel.pohyb("d")
+                        return
+                else:
+                    if not is_wall((row, col+1)) and not is_wall((row, col+2)):
+                        nepritel.pohyb("d")
+                        return
+
+    for i in range(1, 4):
+        if is_valid_position(row, col-i):
+            if fields.matrix[row][col-i] == "*":
+                if i == 1:
+                    nepritel.pohyb("a")
+                    return
+                elif i == 2:
+                    if not is_wall((row, col-1)):
+                        nepritel.pohyb("a")
+                        return
+                else:
+                    if not is_wall((row, col-1)) and not is_wall((row, col-2)):
+                        nepritel.pohyb("a")
+                        return
+    
+    if is_valid_position(row-1, col+1) and (fields.matrix[row-1][col+1] == "*"):
+        if not is_wall((row-1, col)):
+            nepritel.pohyb("w")
+            return
+        elif not is_wall(row, col+1):
+            nepritel.pohyb("d")
+            return  
+    elif is_valid_position(row-1, col-1) and (fields.matrix[row-1][col-1] == "*"):
+        if not is_wall((row-1, col)):
+            nepritel.pohyb("w")
+            return
+        elif not is_wall(row, col-1):
+            nepritel.pohyb("a")
+            return
+    elif is_valid_position(row+1, col+1) and (fields.matrix[row+1][col+1] == "*"):
+        if not is_wall((row+1, col)):
+            nepritel.pohyb("s")
+            return
+        elif not is_wall(row, col+1):
+            nepritel.pohyb("d")
+            return
+    elif is_valid_position(row+1, col-1) and (fields.matrix[row+1][col-1] == "*"):
+        if not is_wall((row+1, col)):
+            nepritel.pohyb("s")
+            return
+        elif not is_wall((row, col-1)):
+            nepritel.pohyb("a")
+            return
+                
+    # Pokud hráče nevidí (a nevidí ani žádný item), pohybuje se náhodně
     while True:
         smer = random.choice(["W", "S", "A", "D"])
         if smer == "W":
@@ -166,9 +255,6 @@ def enmysMove(pozice, nepritel):
 def is_wall(pozice):
     row, col = pozice
     return fields.matrix[row][col] == "█"
-
-def iswallbetween(fr, fc, sr, sc, tr, tc):
-    return fields.matrix[fr][fc] == "█" or fields.matrix[sr][sc] == "█" or fields.matrix[tr][tc] == "█"
 
 def is_valid_position(r, c):
     return r >= 0 and r < len(fields.matrix) and c >= 0 and c < len(fields.matrix[0])
