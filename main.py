@@ -5,9 +5,6 @@ import copy
 hrac = players.Hrac()
 nepritel = players.Nepritel()
 
-# Vypsání informací ke hře
-functions.info()
-
 # Hlavní cyklus hry
 while True:
     functions.vypsatHraciPole()
@@ -20,10 +17,19 @@ while True:
         fields.matrix = fields.defaultMatrix
         break
     elif smer == "info":
-        functions.info()
-        
-    if smer not in ["w", "W", "a", "A", "s", "S", "d", "D"]:
-        print("Byl zadán neplatný vstup")
-    else:
+        print("Veškeré informace o hře najdeš v souboru README.md")
+    elif smer == "zdravi":
+        print(f"Zdraví hráče (ty): {hrac.zdravi}")
+        print(f"Zdraví nepřítele: {nepritel.zdravi}")
+    elif smer == "brneni":
+        print(f"Brnění hráče (ty): {hrac.brneni}")
+        print(f"Brnění nepřítele: {nepritel.brneni}")
+    elif smer == "sila":
+        print(f"Síla hráče (ty): {hrac.sila}")
+        print(f"Síla nepřítele: {nepritel.sila}") 
+    elif smer in ["w", "W", "a", "A", "s", "S", "d", "D"]:
         hrac.pohyb(smer)
         enmyAI.enmysMove(nepritel.pozice, nepritel)
+        functions.zkotrolovatAPridatItem()
+    else:
+        print("Žádný tah nebyl proveden. Špatný vstup!")

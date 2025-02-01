@@ -15,6 +15,7 @@ def enmysMove(pozice, nepritel):
     for i in range(1, 4):
         if is_valid_position(row-i, col):
             if fields.matrix[row-i][col] == "@":
+                print("Nepřítel tě spatřil")
                 if i == 1:
                     nepritel.pohyb("w")
                     return
@@ -31,6 +32,7 @@ def enmysMove(pozice, nepritel):
     for i in range(1, 4):
         if is_valid_position(row+i, col):
             if fields.matrix[row+i][col] == "@":
+                print("Nepřítel tě spatřil")
                 if i == 1:
                     nepritel.pohyb("s")
                     return
@@ -47,6 +49,7 @@ def enmysMove(pozice, nepritel):
     for i in range(1, 4):
         if is_valid_position(row, col+i):
             if fields.matrix[row][col+i] == "@":
+                print("Nepřítel tě spatřil")
                 if i == 1:
                     nepritel.pohyb("d")
                     return
@@ -63,6 +66,7 @@ def enmysMove(pozice, nepritel):
     for i in range(1, 4):
         if is_valid_position(row, col-i):
             if fields.matrix[row][col-i] == "@":
+                print("Nepřítel tě spatřil")
                 if i == 1:
                     nepritel.pohyb("a")
                     return
@@ -77,6 +81,7 @@ def enmysMove(pozice, nepritel):
     
     # Kontrola vpravo nahoře
     if is_valid_position(row-1, col+1) and (fields.matrix[row-1][col+1] == "@"):
+        print("Nepřítel tě spatřil")
         if fields.helpMatrix[row-1][col] == "@":
             nepritel.pohyb("w")
             return
@@ -93,6 +98,7 @@ def enmysMove(pozice, nepritel):
             
     # Kontrola vlevo nahoře     
     elif is_valid_position(row-1, col-1) and (fields.matrix[row-1][col-1] == "@"): 
+        print("Nepřítel tě spatřil")
         if fields.helpMatrix[row-1][col] == "@":
             nepritel.pohyb("w")
             return
@@ -109,6 +115,7 @@ def enmysMove(pozice, nepritel):
     
     # Kontrola vpravo dole
     elif is_valid_position(row+1, col+1) and (fields.matrix[row+1][col+1] == "@"):
+        print("Nepřítel tě spatřil")
         if fields.helpMatrix[row+1][col] == "@":
             nepritel.pohyb("s")
             return
@@ -125,6 +132,7 @@ def enmysMove(pozice, nepritel):
             
     # Kontrola vlevo dole
     elif is_valid_position(row+1, col-1) and (fields.matrix[row+1][col-1] == "@"):
+        print("Nepřítel tě spatřil")
         if fields.helpMatrix[row+1][col] == "@":
             nepritel.pohyb("s")
             return

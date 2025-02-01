@@ -3,12 +3,9 @@ import functions, fields
 # Classes s hráči
 class Player():
     def __init__(self):
-        self.sila = 50
+        self.sila = 10
         self.zdravi = 100
-        self.hybnost = 50
-        self.zbran = 1
-        self.brneni = 1
-        self.inventar = []
+        self.brneni = 5
         self.pozice = (0,0)
         
     def pohyb(self, smer):
