@@ -10,15 +10,16 @@ while True:
     zivotHrace = functions.zije(hrac)
     zivotNepritele = functions.zije(nepritel)
     
-    if not zivotHrace and not zivotNepritele:
-        print("REMÍZA! Oba jste ztratili veškeré zdraví!")
-        break
-    elif not zivotHrace:
-        print("PROHRÁL JSI! Tvé zdraví kleslo na 0!")
-        break
-    elif not zivotNepritele:
-        print("VYHRÁL JSI! Nepřítel ztratil veškeré zdraví!")
-        break
+    if not zivotHrace or not zivotNepritele:
+        if hrac.zdravi == nepritel.zdravi:
+            print("Remíza! Nikdo nevyhrál!")
+            break
+        elif hrac.zdravi > nepritel.zdravi:
+            print("Vyhrál jsi! Gratuluji!")
+            break
+        else:
+            print("Prohrál jsi! Zkus to znovu!")
+            break
     
     functions.vypsatHraciPole()
     fields.helpMatrix = copy.deepcopy(fields.matrix)
