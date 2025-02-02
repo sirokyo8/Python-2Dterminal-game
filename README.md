@@ -38,10 +38,10 @@ Cílem hry je porazit nepřítele snížením jeho zdraví na nulu, zatímco si 
 
 ## Spuštění hry
 
-Pro spuštění hry spusťte soubor `functions.py`:
+Pro spuštění hry spusťte soubor `main.py`:
 
 ```sh
-python matin.py
+python main.py
 ```
 
 ## Soubory
@@ -96,10 +96,10 @@ The objective of the game is to defeat the enemy by reducing their health to zer
 
 ## Running the Game
 
-To start the game, run the `functions.py` file:
+To start the game, run the `main.py` file:
 
 ```sh
-python functions.py
+python main.py
 ```
 
 ## Files
